@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ร้านลับแลของฝาก</title>
+</head>
+<body>
+  <h1>ร้านลับแลของฝาก</h1>
+
+  <form method="GET" action="/order">
+    <h2>ส่งแบบ GET</h2>
+    <p>ผู้ส่ง <input name="student" value="ชื่อของฉัน"></p>
+    <p>สินค้า <select name="item">
+      <option>ทุเรียนกวน</option><option>ลางสาด</option><option>ข้าวแคบ</option>
+    </select></p>
+    <p>จำนวน <input name="qty" type="number" value="1"></p>
+    <button>สั่งซื้อ (GET)</button>
+  </form>
+
+  <form method="POST" action="/order">
+    <h2>ส่งแบบ POST</h2>
+    <p>ผู้ส่ง <input name="student" value="ชื่อของฉัน"></p>
+    <p>สินค้า <select name="item">
+      <option>ทุเรียนกวน</option><option>ลางสาด</option><option>ข้าวแคบ</option>
+    </select></p>
+    <p>จำนวน <input name="qty" type="number" value="1"></p>
+    <button>สั่งซื้อ (POST)</button>
+  </form>
+</body>
+</html>
