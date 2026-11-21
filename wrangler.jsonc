@@ -1,0 +1,7 @@
+{
+  // ตั้งค่าเว็บเซิร์ฟเวอร์ของร้าน: ชื่อ ไฟล์สคริปต์ และโฟลเดอร์หน้าเว็บ
+  "name": "mobile-week03",
+  "main": "src/index.js",
+  "compatibility_date": "2026-11-01",
+  "assets": { "directory": "./public" }
+}

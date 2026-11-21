@@ -1,4 +1,5 @@
-// สคริปต์ฝั่งเซิร์ฟเวอร์ของร้าน ทำงานเมื่อมีคำขอมาที่ /order
+// สคริปต์ฝั่งเซิร์ฟเวอร์ของร้าน (Cloudflare Worker)
+// คำขอที่ตรงกับไฟล์ใน public/ เซิร์ฟเวอร์ส่งไฟล์ให้เลย ที่เหลือมาถึงโค้ดนี้
 const LABELS = { student: "ผู้ส่ง", item: "สินค้า", qty: "จำนวน" };
 
 function esc(text) {
@@ -22,15 +23,16 @@ function reply(method, path, data) {
   return new Response(html, { headers: { "Content-Type": "text/html; charset=utf-8" } });
 }
 
-// GET: ค่าจากฟอร์มอยู่ใน URL หลังเครื่องหมาย ?
-export async function onRequestGet({ request }) {
-  const url = new URL(request.url);
-  return reply("GET", url.pathname + url.search, url.searchParams);
-}
-
-// POST: ค่าจากฟอร์มอยู่ในตัวคำขอ (body) ไม่อยู่ใน URL
-export async function onRequestPost({ request }) {
-  const url = new URL(request.url);
-  const form = await request.formData();
-  return reply("POST", url.pathname + url.search, form);
-}
+export default {
+  async fetch(request) {
+    const url = new URL(request.url);
+    if (url.pathname !== "/order") {
+      return new Response("ไม่พบหน้านี้", { status: 404 });
+    }
+    if (request.method === "POST") {
+      const form = await request.formData();        // POST: ค่าอยู่ในตัวคำขอ (body)
+      return reply("POST", url.pathname + url.search, form);
+    }
+    return reply("GET", url.pathname + url.search, url.searchParams);  // GET: ค่าอยู่ใน URL หลัง ?
+  },
+};
