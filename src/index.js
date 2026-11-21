@@ -16,6 +16,7 @@ function reply(method, path, data) {
 <title>ผลจากเซิร์ฟเวอร์</title></head><body>
 <h1>เซิร์ฟเวอร์ได้รับใบสั่ง</h1>
 <p>วิธีส่ง <b>${method}</b> · ที่อยู่ที่ขอ <code>${esc(path)}</code></p>
+<p>อ่านแบบถอดรหัสภาษาไทย <code>${esc(decodeURIComponent(path))}</code></p>
 <table border="1" cellpadding="8">${rows}</table>
 <p>เซิร์ฟเวอร์สร้างหน้านี้ตอนได้รับคำขอ และไม่ได้เก็บใบสั่งไว้</p>
 <p><a href="/">กลับหน้าฟอร์ม</a></p>
